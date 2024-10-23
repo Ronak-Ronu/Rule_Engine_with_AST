@@ -7,6 +7,7 @@ const App = () => {
     const [rule2, setRule2] = useState('');
     const [data, setData] = useState({ age: '', department: '', salary: '', experience: '' });
     const [result, setResult] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -15,11 +16,14 @@ const App = () => {
 
     
     const handleEvaluate = async () => {
+        setLoading(true);
       try {
           const response = await axios.post('https://rule-engine-with-ast-backend-gm0y.onrender.com/evaluate', { rules: [rule1, rule2], data });
           setResult({ success: response.data.result, reasons: response.data.reasons });
       } catch (error) {
           console.error(error);
+      }finally{
+        setLoading(false);  
       }
   };
   
@@ -58,29 +62,28 @@ const App = () => {
             </div>
             <button className="evaluate-button" onClick={handleEvaluate}>Evaluate Rules</button>
             </div>
-<div className='outputSection'>
-
-            {result !== null && (
-                <div className="result-section">
-                    {result && (
-               <div className="result-section">
-                <h2>Result: {result.success ? 'True' : 'False'}</h2>
-                {!result.success && (
-                    <div>
-                        <h3>Reasons:</h3>
-                        <ul>
-                            {result.reasons.map((reason, index) => (
-                                <li key={index}>{reason}</li>
-                            ))}
-                        </ul>
+            <div className="outputSection">
+                {/* Show the loader when loading is true */}
+                {loading && <div className="loader"></div>}
+                {loading && <p style={{textAlign:'center'}}>Analyzing Your result ...</p>}
+                {/* Display result when not loading and result is available */}
+                {!loading && result !== null && (
+                    <div className="result-section">
+                        <h2>Result: {result.success ? 'True' : 'False'}</h2>
+                        {!result.success && (
+                            <div>
+                                <h3>Reasons:</h3>
+                                <ul>
+                                    {result.reasons.map((reason, index) => (
+                                        <li key={index}>{reason}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
                     </div>
                 )}
             </div>
-        )}
 
-                </div>
-            )}
-</div>
 
         </div>
     );
