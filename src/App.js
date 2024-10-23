@@ -16,7 +16,7 @@ const App = () => {
     
     const handleEvaluate = async () => {
       try {
-          const response = await axios.post('http://localhost:5000/evaluate', { rules: [rule1, rule2], data });
+          const response = await axios.post('https://rule-engine-with-ast-backend-gm0y.onrender.com/evaluate', { rules: [rule1, rule2], data });
           setResult({ success: response.data.result, reasons: response.data.reasons });
       } catch (error) {
           console.error(error);
