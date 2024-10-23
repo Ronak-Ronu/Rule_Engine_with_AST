@@ -38,13 +38,14 @@ input {
   border-radius: 4px;
 }
 
-.evaluate-button {
+.evaluate-button,.sample-data-button {
   padding: 10px 15px;
   background-color: #283da7;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-right: 20px;
 }
 
 .evaluate-button:hover {
@@ -72,3 +73,4 @@ input {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+

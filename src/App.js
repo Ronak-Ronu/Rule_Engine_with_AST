@@ -27,6 +27,16 @@ const App = () => {
       }
   };
   
+  const handleSampleData = () => {
+    setData({
+        age: '30',
+        department: 'Sales',
+        salary: '60000',
+        experience: '5'
+    });
+    setRule1("(age > 25 AND department = 'IT')");
+    setRule2("(age > 35 AND department = 'Sales')");
+};
 
     return (
         <div className="container">
@@ -35,10 +45,10 @@ const App = () => {
             <h1>Rule Engine</h1>
             <div className="input-section">
                 <h2>Input Data</h2>
-                <input type="number" name="age" placeholder="Age" onChange={handleInputChange} />
-                <input type="text" name="department" placeholder="Department" onChange={handleInputChange} />
-                <input type="number" name="salary" placeholder="Salary" onChange={handleInputChange} />
-                <input type="number" name="experience" placeholder="Experience" onChange={handleInputChange} />
+                <input type="number" name="age" placeholder="Age" value={data.age}  onChange={handleInputChange} />
+                <input type="text" name="department" placeholder="Department" value={data.department} onChange={handleInputChange} />
+                <input type="number" name="salary" placeholder="Salary" value={data.salary} onChange={handleInputChange} />
+                <input type="number" name="experience" placeholder="Experience" value={data.experience} onChange={handleInputChange} />
             </div>
             <div className="input-section">
                 <h2>Input Rule 1</h2>
@@ -61,6 +71,8 @@ const App = () => {
                 />
             </div>
             <button className="evaluate-button" onClick={handleEvaluate}>Evaluate Rules</button>
+            <button className="sample-data-button" onClick={handleSampleData}>Load Sample Data</button>
+
             </div>
             <div className="outputSection">
                 {/* Show the loader when loading is true */}
