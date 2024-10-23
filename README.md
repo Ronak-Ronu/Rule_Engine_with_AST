@@ -16,7 +16,11 @@ This React application serves as the frontend for the Rule Engine, allowing user
     - Rule 2: (age < 25 OR department = 'IT')
 - `Evaluate Rules:` Click the "Evaluate Rules" button to send data and rules to the backend.
 - `View Results:` The application displays whether the rules evaluate to true or false, along with reasons for any failures.
-
+## Screenshot
+- if rules doesnt satisfies
+![alt text](image.png)
+- if rules satisfies
+![alt text](image-1.png)
 ## API Interaction
 - The application sends a POST request to the backend endpoint at http://localhost:5000/evaluate with the following structure:
 ```json
